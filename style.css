@@ -1,8 +1,8 @@
 :root {
   --dark-text: #f8fbff;
   --light-body: #f3f8fe;
-  --light-main: #fdfdfd;
-  --light-second: #c3c2c8;
+  --light-main: #fdf7f7;
+  --light-second: #ffffff;
   --light-hover: #f0f0f0;
   --light-text: #151426;
   --light-btn: #4e68b3;
@@ -19,9 +19,24 @@
 body {
   place-items: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background:linear-gradient(to top, #f5e505, #07d5f4);
-  overflow: hidden;
-}
+  background-image:url(https://png.pngtree.com/background/20230426/original/pngtree-five-colorful-water-droplets-gathered-on-a-surface-picture-image_2486660.jpg);
+ background-repeat: no-repeat;
+  background-size: cover;
+    display: flex;
+    margin-top: 90px;
+    margin-left: 500px;
+    justify-content: center;
+    border:5px solid rgb(225, 225, 200);
+    width:920px;
+    height: 750px;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(30px);
+    border-radius: 60px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  
+  }
+
 .container {
   width: max-content;
   height: max-content;
@@ -36,11 +51,11 @@ body {
 }
 .calendar {
   height: 700px;
-  width: 50%;
-  background-color: white;
+  width: 90%;
   border-radius: 25px;
-  font-size: 25px;
-  overflow: hidden;
+  font-size: 35px;
+  color: white;
+  margin-left: 15px;
   padding: 30px 50px 0px 50px;
 }
 .calendar {
@@ -48,10 +63,13 @@ body {
 }
 .calendar-header {
   background: #0a0872;
+  border-radius: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: 900;
+  font-size: 50px;
+  font-family: cursive;
   color: var(--white);
   padding: 10px;
 }
@@ -61,12 +79,13 @@ body {
 .calendar-week-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
-  color:rgb(104, 104, 104);
+  color:rgb(253, 247, 247);
+  font-size: 40px;
 }
 .calendar-week-days div:hover {
-color:black;
+color:rgb(21, 8, 121);
 transform: scale(1.2);
 transition: all .2s ease-in-out;
 }
@@ -80,6 +99,8 @@ transition: all .2s ease-in-out;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
+  margin-left: 35px;
+  gap: 20px;
   color: var(--color-txt);
 }
 .calendar-days div {
