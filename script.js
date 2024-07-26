@@ -103,6 +103,46 @@ const isLeapYear = (year) => {
       dateFormate.classList.add('showtime');
     };
   });
+
+  function openModal() {
+    var modal = document.getElementById("eventModal");
+    modal.style.display = "block";
+  }
+
+  function closeModal() {
+    var modal = document.getElementById("eventModal");
+    modal.style.display = "none";
+  }
+
+  document.getElementById('eventForm').addEventListener('submit', function(e) {
+    e.preventDefault(); 
+    
+    var eventTitle = document.getElementById('eventTitle').value;
+    if (eventTitle.trim() !== '') {
+      
+      console.log(`Saving event: ${eventTitle}`);
+      closeModal(); 
+    }
+  });
+  
+
+  window.onclick = function(event) {
+    if (event.target == document.getElementById("eventModal")) {
+      closeModal();
+    }
+  };
+  
+
+  // const generateCalendar = (month, year) => {
+  
+    
+  //   // Add event listener to each day
+  //   document.querySelectorAll('.calendar-days div').forEach(day => {
+  //     day.addEventListener('click', function() {
+  //       openModal(); // Open the modal
+  //     });
+  //   });
+  // };
   
   (function () {
     month_list.classList.add('hideonce');
@@ -117,23 +157,64 @@ const isLeapYear = (year) => {
   };
 
   function saveEvent() {
-    if (eventTitleInput.value) {
-      eventTitleInput.classList.remove('error');
-      events.push({
-        date: clicked,
-        title: eventTitleInput.value,
-      });
+    const eventTitle = document.querySelector('#event-title').value;
+    if (eventTitle.trim() !== '') {
+      const newEvent = {
+        title: eventTitle,
+        startDate: new Date().toISOString(),
+        endDate: new Date(new Date().setHours(new Date().getHours() + 1)).toISOString(), 
+      };
+      events.push(newEvent);
       localStorage.setItem('events', JSON.stringify(events));
-      closeModal();
+      alert('Event saved!');
+      document.querySelector('#event-title').value = ''; 
     } else {
-      eventTitleInput.classList.add('error');
+      alert('Please enter an event title.');
     }
   }
-  function deleteEvent() {
-    events = events.filter(e => e.date !== clicked);
+  document.querySelector('#save-event').addEventListener('click', () => {
+    const eventTitle = document.querySelector('#event-title').value;
+    if (eventTitle.trim() !== '') {
+      const newEvent = {
+        title: eventTitle,
+        startDate: new Date().toISOString(),
+        endDate: new Date(new Date().setHours(new Date().getHours() + 1)).toISOString(), // Example: 1-hour event
+      };
+      events.push(newEvent);
+      localStorage.setItem('events', JSON.stringify(events));
+      alert('Event saved!');
+    } else {
+      alert('Please enter an event title.');
+    }
+  });
+  
+  function deleteEvent(eventId) {
+    events = events.filter(e => e.id !== eventId);
     localStorage.setItem('events', JSON.stringify(events));
-    closeModal();
+    alert('Event deleted!');
   }
+  document.querySelector('#delete-event').addEventListener('click', () => {
+    if (events.length > 0) {
+      const lastEvent = events.pop(); // Removes the last item from the array
+      localStorage.removeItem(lastEvent.id); // Remove the event from localStorage
+      localStorage.setItem('events', JSON.stringify(events)); // Update localStorage with remaining events
+      alert('Event deleted successfully!');
+    } else {
+      alert('No events to delete.');
+    }
+  });
+  
+  function editEvent(eventId, newTitle) {
+    const eventIndex = events.findIndex(e => e.id === eventId);
+    if (eventIndex !== -1) {
+      events[eventIndex].title = newTitle;
+      localStorage.setItem('events', JSON.stringify(events));
+      alert('Event edited!');
+    } else {
+      alert('Event not found.');
+    }
+  }
+  
   
   let currentDate = new Date();
   let currentMonth = { value: currentDate.getMonth() };

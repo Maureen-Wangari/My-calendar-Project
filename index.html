@@ -9,6 +9,24 @@
   </head>
   <body>
     <div class="container">
+
+      <div id="eventModal" class="modal">
+        <div class="modal-content">
+          <h4>Add Event</h4>
+          <form id="eventForm">
+            <input type="text" id="eventTitle" placeholder="Event Title" required>
+            <button type="submit" class="btn waves-effect waves-light">Save</button>
+            <button type="button" class="btn modal-close waves-effect waves-green">Cancel</button>
+          </form>
+        </div>
+      </div>
+      
+      <div>
+        <input type="text" id="event-title" placeholder="Enter event title...">
+        <button id="save-event">Save Event</button>
+        <button id="edit-event">Edit Event</button>
+        <button id="delete-event">Delete Event</button>
+      </div>
       <div class="calendar">
         <div class="calendar-header">
           <span class="month-picker" id="month-picker"> May </span>
@@ -48,5 +66,16 @@
         <div class="month-list"></div>
       </div>
     </div>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SPMD9R4CJ3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SPMD9R4CJ3');
+</script>
+
   </body>
 </html>
